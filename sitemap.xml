@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://lettherebeyourvoice.netlify.app/</loc>
+  </url>
+
+  <url>
+    <loc>https://lettherebeyourvoice.netlify.app/podcasts</loc>
+  </url>
+
+  <url>
+    <loc>https://lettherebeyourvoice.netlify.app/cart</loc>
+  </url>
+
+  <url>
+    <loc>https://lettherebeyourvoice.netlify.app/checkout</loc>
+  </url>
+
+  <url>
+    <loc>https://lettherebeyourvoice.netlify.app/products</loc>
+  </url>
+
+  <url>
+    <loc>https://lettherebeyourvoice.netlify.app/delivery</loc>
+  </url>
+
+  <url>
+    <loc>https://lettherebeyourvoice.netlify.app/tracking</loc>
+  </url>
+
+  <url>
+    <loc>https://lettherebeyourvoice.netlify.app/contact</loc>
+  </url>
+
+  <url>
+    <loc>https://lettherebeyourvoice.netlify.app/faq</loc>
+  </url>
+
+</urlset>
