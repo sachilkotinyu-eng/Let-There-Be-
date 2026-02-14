@@ -684,7 +684,80 @@ function simulateDriverMovement(path) {
 
 <!-- REPLACE YOUR_API_KEY BELOW -->
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt8PWm6XBUlUum7DNkXklH_xEdPhW5D4w&callback=initMap">
+</script>
+<style>
+#map {
+  width: 100%;
+  height: 400px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+</style>
+<script>
+let map;
+let driverMarker;
+let directionsService;
+let directionsRenderer;
+
+const storeLocation = { lat: -17.8252, lng: 31.0335 };
+const customerLocation = { lat: -17.8350, lng: 31.0500 };
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 14,
+        center: storeLocation
+    });
+
+    driverMarker = new google.maps.Marker({
+        position: storeLocation,
+        map: map,
+        title: "Driver"
+    });
+
+    new google.maps.Marker({
+        position: customerLocation,
+        map: map,
+        title: "Customer"
+    });
+
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer();
+    directionsRenderer.setMap(map);
+}
+
+function startDelivery() {
+    directionsService.route({
+        origin: storeLocation,
+        destination: customerLocation,
+        travelMode: "DRIVING"
+    }, function(response, status) {
+        if (status === "OK") {
+            directionsRenderer.setDirections(response);
+
+            const route = response.routes[0].legs[0];
+            document.getElementById("eta").innerText =
+                "ETA: " + route.duration.text;
+
+            simulateDriverMovement(response.routes[0].overview_path);
+        } else {
+            alert("Directions failed: " + status);
+        }
+    });
+}
+
+function simulateDriverMovement(path) {
+    let i = 0;
+    const move = setInterval(() => {
+        if (i < path.length) {
+            driverMarker.setPosition(path[i]);
+            i++;
+        } else {
+            clearInterval(move);
+            document.getElementById("eta").innerText = "Delivered ✅";
+        }
+    }, 500);
+}
 </script>
 </body>
 </html>
